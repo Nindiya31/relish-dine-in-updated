@@ -1,0 +1,29 @@
+<app-navbar />
+<div class="menu-page">
+  <div class="menu-header">
+    <h1>Our Menu</h1>
+    <p class="greeting" *ngIf="customer">Hello, <strong>{{ customer.name }}</strong> 👋</p>
+  </div>
+  <div class="category-scroll" *ngIf="!loading">
+    <button *ngFor="let cat of categories" class="cat-btn" [class.active]="activeCategory===cat" (click)="filterBy(cat)">
+      {{ formatCategory(cat) }}
+    </button>
+  </div>
+  <div class="loading-state" *ngIf="loading"><div class="spinner"></div><p>Loading menu…</p></div>
+  <div class="menu-grid" *ngIf="!loading">
+    <div class="menu-card card" *ngFor="let item of filteredItems">
+      <div class="card-top"><span class="category-pill">{{ formatCategory(item.category) }}</span></div>
+      <h3 class="item-name">{{ item.name }}</h3>
+      <p class="item-desc" *ngIf="item.description">{{ item.description }}</p>
+      <div class="card-footer">
+        <span class="price">₹{{ item.price }}</span>
+        <button class="btn-add" (click)="addToCart(item)" [disabled]="addingId===item.id">
+          {{ addingId===item.id ? '...' : '+ Add' }}
+        </button>
+      </div>
+    </div>
+    <div class="empty-state" *ngIf="filteredItems.length===0"><p>No items in this category.</p></div>
+  </div>
+  <button class="fab-cart" (click)="goToCart()" *ngIf="!loading">🛒 View Cart</button>
+</div>
+<div class="toast" [class.show]="toastMsg">{{ toastMsg }}</div>

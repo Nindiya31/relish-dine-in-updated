@@ -1,0 +1,17 @@
+<div class="login-page">
+  <div class="login-card card">
+    <div class="login-logo"><span class="logo-r">R</span></div>
+    <h2>Admin Portal</h2>
+    <p class="login-sub">Relish Divine Dining</p>
+    <div class="form-group">
+      <label>Username</label>
+      <input class="relish-input" type="text" [(ngModel)]="username" placeholder="admin"/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input class="relish-input" type="password" [(ngModel)]="password" placeholder="••••••••" (keyup.enter)="onLogin()"/>
+    </div>
+    <p class="error-msg" *ngIf="error">{{ error }}</p>
+    <button class="btn-primary" (click)="onLogin()">Login</button>
+  </div>
+</div>

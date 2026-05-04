@@ -1,0 +1,56 @@
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="logo-r">R</span><span>Admin</span></div>
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/dashboard"         class="nav-item">📊 Dashboard</a>
+      <a routerLink="/admin/orders-management" class="nav-item">📋 Orders</a>
+      <a routerLink="/admin/menu-management"   class="nav-item active">🍽️ Menu</a>
+    </nav>
+    <button class="btn-logout" (click)="logout()">Logout</button>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-header">
+      <h1>Menu Management</h1>
+      <button class="btn-add-item" (click)="openAdd()">+ Add Item</button>
+    </div>
+    <div class="form-panel card" *ngIf="showForm">
+      <h3>{{ editingId ? 'Edit Item' : 'Add New Item' }}</h3>
+      <div class="form-grid">
+        <div class="form-group"><label>Name</label><input class="relish-input" [(ngModel)]="form.name" placeholder="Item name"/></div>
+        <div class="form-group"><label>Price (₹)</label><input class="relish-input" type="number" [(ngModel)]="form.price" min="0"/></div>
+        <div class="form-group full"><label>Description</label><input class="relish-input" [(ngModel)]="form.description" placeholder="Short description"/></div>
+        <div class="form-group">
+          <label>Category</label>
+          <select class="relish-input" [(ngModel)]="form.category">
+            <option *ngFor="let c of categories" [value]="c">{{ c.replace('_',' ') }}</option>
+          </select>
+        </div>
+        <div class="form-group available-toggle">
+          <label>Available</label>
+          <input type="checkbox" [(ngModel)]="form.available"/>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-primary" style="max-width:140px" (click)="saveItem()" [disabled]="saving">{{ saving?'Saving…':'Save' }}</button>
+        <button class="btn-secondary" (click)="cancelForm()">Cancel</button>
+      </div>
+    </div>
+    <div class="loading-state" *ngIf="loading"><div class="spinner"></div></div>
+    <div class="items-list" *ngIf="!loading">
+      <div class="empty-msg" *ngIf="items.length===0">No menu items. Add one above.</div>
+      <div class="item-row card" *ngFor="let item of items">
+        <div class="item-info">
+          <h4>{{ item.name }}</h4>
+          <p class="item-meta">{{ item.category.replace('_',' ') }} · ₹{{ item.price }}</p>
+          <p class="item-desc" *ngIf="item.description">{{ item.description }}</p>
+        </div>
+        <div class="item-controls">
+          <span class="avail-badge" [class.unavail]="!item.available">{{ item.available?'Available':'Unavailable' }}</span>
+          <button class="ctrl-btn" (click)="toggleAvailable(item)">{{ item.available?'🔴 Mark Off':'🟢 Mark On' }}</button>
+          <button class="ctrl-btn" (click)="openEdit(item)">✏️ Edit</button>
+          <button class="ctrl-btn danger" (click)="deleteItem(item)">🗑️ Delete</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

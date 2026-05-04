@@ -1,0 +1,33 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <span class="brand-r">R</span>
+    <span class="brand-text">ELISH</span>
+  </div>
+  <button class="hamburger" (click)="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" [class.open]="menuOpen">
+    <li><a routerLink="/home"        routerLinkActive="active" (click)="menuOpen=false">Home</a></li>
+    <li><a routerLink="/menu"        routerLinkActive="active" (click)="menuOpen=false">Menu</a></li>
+    <li><a routerLink="/cart"        routerLinkActive="active" (click)="menuOpen=false">Cart</a></li>
+    <li><a routerLink="/orders"      routerLinkActive="active" (click)="menuOpen=false">My Orders</a></li>
+    <li><a routerLink="/admin/login" class="admin-link"        (click)="menuOpen=false">Admin</a></li>
+  </ul>
+</nav>
+<style>
+.navbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;background:var(--relish-black);border-bottom:2px solid var(--relish-gold)}
+.navbar-brand{display:flex;align-items:baseline;gap:2px;cursor:default}
+.brand-r{font-size:28px;font-weight:700;color:var(--relish-gold);line-height:1}
+.brand-text{font-size:16px;font-weight:600;color:#fff;letter-spacing:.2em}
+.nav-links{display:flex;list-style:none;gap:8px}
+.nav-links a{display:block;padding:8px 14px;border-radius:8px;color:#ccc;text-decoration:none;font-size:14px;font-weight:500;transition:color .2s,background .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--relish-gold);background:rgba(201,168,76,.08)}
+.admin-link{border:1px solid var(--relish-gold)!important;color:var(--relish-gold)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--relish-gold);border-radius:2px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--relish-black);padding:16px 24px 24px;border-bottom:2px solid var(--relish-gold);gap:4px}
+  .nav-links.open{display:flex}
+}
+</style>

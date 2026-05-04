@@ -1,81 +1,27 @@
 :root {
-  --relish-gold: #C9A84C;
+  --relish-gold:       #C9A84C;
   --relish-gold-light: #E8C97A;
-  --relish-black: #0D0D0D;
-  --relish-dark: #1A1A1A;
-  --relish-surface: #F9F6F0;
-  --relish-text: #1A1A1A;
+  --relish-black:      #0D0D0D;
+  --relish-dark:       #1A1A1A;
+  --relish-surface:    #F9F6F0;
+  --relish-text:       #1A1A1A;
   --relish-text-muted: #6B6B6B;
-  --relish-border: #E0D8C8;
-  --relish-radius: 12px;
-  --relish-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --relish-border:     #E0D8C8;
+  --relish-radius:     12px;
+  --relish-shadow:     0 2px 12px rgba(0,0,0,0.08);
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: var(--relish-surface);
-  color: var(--relish-text);
-  min-height: 100vh;
-}
-
-h1, h2, h3 { font-weight: 600; }
-
-button.btn-primary {
-  background: var(--relish-gold);
-  color: var(--relish-black);
-  border: none;
-  padding: 12px 28px;
-  border-radius: var(--relish-radius);
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-  width: 100%;
-}
-
-button.btn-primary:hover { background: var(--relish-gold-light); }
-
-button.btn-secondary {
-  background: transparent;
-  color: var(--relish-gold);
-  border: 1.5px solid var(--relish-gold);
-  padding: 10px 24px;
-  border-radius: var(--relish-radius);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-button.btn-secondary:hover {
-  background: var(--relish-gold);
-  color: var(--relish-black);
-}
-
-input.relish-input {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1.5px solid var(--relish-border);
-  border-radius: var(--relish-radius);
-  font-size: 15px;
-  background: #fff;
-  color: var(--relish-text);
-  transition: border-color 0.2s;
-  outline: none;
-}
-
-input.relish-input:focus { border-color: var(--relish-gold); }
-
-.card {
-  background: #fff;
-  border-radius: var(--relish-radius);
-  border: 1px solid var(--relish-border);
-  padding: 20px;
-  box-shadow: var(--relish-shadow);
-}
-
-@media (max-width: 768px) {
-  .card { padding: 16px; }
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--relish-surface);color:var(--relish-text);min-height:100vh}
+h1,h2,h3,h4{font-weight:600}
+.card{background:#fff;border-radius:var(--relish-radius);border:1px solid var(--relish-border);padding:20px;box-shadow:var(--relish-shadow)}
+.relish-input{width:100%;padding:12px 16px;border:1.5px solid var(--relish-border);border-radius:var(--relish-radius);font-size:15px;background:#fff;color:var(--relish-text);transition:border-color .2s;outline:none;font-family:inherit}
+.relish-input:focus{border-color:var(--relish-gold)}
+select.relish-input{cursor:pointer}
+.btn-primary{display:block;width:100%;background:var(--relish-gold);color:var(--relish-black);border:none;padding:13px 28px;border-radius:var(--relish-radius);font-size:15px;font-weight:600;cursor:pointer;transition:background .2s;font-family:inherit}
+.btn-primary:hover{background:var(--relish-gold-light)}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed}
+.btn-secondary{display:block;width:100%;background:transparent;color:var(--relish-gold);border:1.5px solid var(--relish-gold);padding:11px 24px;border-radius:var(--relish-radius);font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-secondary:hover{background:var(--relish-gold);color:var(--relish-black)}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--relish-border);border-radius:3px}

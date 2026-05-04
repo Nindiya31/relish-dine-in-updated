@@ -1,0 +1,23 @@
+<div class="home-page">
+  <div class="hero">
+    <div class="logo-ring"><span class="logo-r">R</span></div>
+    <h1 class="brand-name">RELISH</h1>
+    <p class="brand-tagline">Divine Dining</p>
+  </div>
+  <div class="welcome-card card">
+    <h2>Welcome, Guest</h2>
+    <p class="subtitle">Enter your details to start ordering</p>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input class="relish-input" type="text" placeholder="e.g. Rahul Sharma" [(ngModel)]="name" [disabled]="loading"/>
+    </div>
+    <div class="form-group">
+      <label>Mobile Number</label>
+      <input class="relish-input" type="tel" placeholder="10-digit mobile" [(ngModel)]="mobile" maxlength="10" [disabled]="loading"/>
+    </div>
+    <p class="error-msg" *ngIf="error">{{ error }}</p>
+    <button class="btn-primary" (click)="onSubmit()" [disabled]="loading">
+      {{ loading ? 'Please wait...' : 'View Menu →' }}
+    </button>
+  </div>
+</div>

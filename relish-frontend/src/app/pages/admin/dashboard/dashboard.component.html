@@ -1,0 +1,23 @@
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="logo-r">R</span><span>Admin</span></div>
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/dashboard"         class="nav-item active">📊 Dashboard</a>
+      <a routerLink="/admin/orders-management" class="nav-item">📋 Orders</a>
+      <a routerLink="/admin/menu-management"   class="nav-item">🍽️ Menu</a>
+    </nav>
+    <button class="btn-logout" (click)="logout()">Logout</button>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-header"><h1>Dashboard</h1><p class="admin-sub">Welcome back, Admin</p></div>
+    <div class="stat-grid" *ngIf="!loading">
+      <div class="stat-card card"><p class="stat-label">Total Orders</p><p class="stat-value">{{ total }}</p></div>
+      <div class="stat-card card pending"><p class="stat-label">Pending</p><p class="stat-value">{{ pending }}</p></div>
+      <div class="stat-card card confirmed"><p class="stat-label">Confirmed</p><p class="stat-value">{{ confirmed }}</p></div>
+      <div class="stat-card card completed"><p class="stat-label">Completed</p><p class="stat-value">{{ completed }}</p></div>
+    </div>
+    <div class="quick-actions">
+      <a routerLink="/admin/orders-management" class="btn-primary" style="max-width:220px;text-decoration:none;text-align:center;display:block;">Manage Orders →</a>
+    </div>
+  </main>
+</div>

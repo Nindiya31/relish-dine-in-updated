@@ -1,0 +1,41 @@
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="logo-r">R</span><span>Admin</span></div>
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/dashboard"         class="nav-item">📊 Dashboard</a>
+      <a routerLink="/admin/orders-management" class="nav-item active">📋 Orders</a>
+      <a routerLink="/admin/menu-management"   class="nav-item">🍽️ Menu</a>
+    </nav>
+    <button class="btn-logout" (click)="logout()">Logout</button>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-header">
+      <h1>Orders Management</h1>
+      <div class="filter-bar">
+        <button *ngFor="let s of ['ALL','PENDING','CONFIRMED','COMPLETED']"
+          class="filter-btn" [class.active]="filterStatus===s" (click)="filterStatus=s">{{ s }}</button>
+      </div>
+    </div>
+    <div class="loading-state" *ngIf="loading"><div class="spinner"></div></div>
+    <div class="orders-table-wrap" *ngIf="!loading">
+      <div class="empty-msg" *ngIf="filtered.length===0">No orders found.</div>
+      <div class="order-row card" *ngFor="let order of filtered">
+        <div class="order-meta">
+          <h4>Order #{{ order.id }}</h4>
+          <p class="order-customer">{{ order.customerName }} · ₹{{ order.totalAmount }}</p>
+          <p class="order-date">{{ order.createdAt | date:'dd MMM, h:mm a' }}</p>
+        </div>
+        <div class="order-items-list">
+          <span *ngFor="let item of order.items" class="order-item-pill">{{ item.menuItemName }} ×{{ item.quantity }}</span>
+        </div>
+        <div class="order-actions">
+          <span class="status-badge" [ngClass]="statusClass(order.status)">{{ order.status }}</span>
+          <button *ngIf="nextStatus(order.status)" class="btn-action"
+            [disabled]="updating===order.id" (click)="updateStatus(order,nextStatus(order.status)!)">
+            {{ updating===order.id ? '…' : nextLabel(order.status) }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

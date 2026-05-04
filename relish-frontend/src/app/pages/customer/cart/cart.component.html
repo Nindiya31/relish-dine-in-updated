@@ -1,0 +1,39 @@
+<app-navbar />
+<div class="cart-page">
+  <h1>Your Cart</h1>
+  <div class="loading-state" *ngIf="loading"><div class="spinner"></div><p>Loading cart…</p></div>
+  <ng-container *ngIf="!loading">
+    <div class="empty-cart card" *ngIf="!cart?.items?.length">
+      <p class="empty-icon">🛒</p>
+      <h3>Your cart is empty</h3>
+      <p>Add some delicious items from our menu.</p>
+      <button class="btn-primary" style="max-width:220px;margin-top:20px" (click)="goToMenu()">Browse Menu</button>
+    </div>
+    <div class="cart-body" *ngIf="cart?.items?.length">
+      <div class="cart-items">
+        <div class="cart-item card" *ngFor="let item of cart!.items">
+          <div class="item-info">
+            <h4>{{ item.menuItemName }}</h4>
+            <p class="item-price">₹{{ item.menuItemPrice }} × {{ item.quantity }}</p>
+          </div>
+          <div class="item-actions">
+            <span class="item-total">₹{{ (item.menuItemPrice??0)*item.quantity }}</span>
+            <button class="btn-remove" (click)="removeItem(item)">✕</button>
+          </div>
+        </div>
+      </div>
+      <div class="order-summary card">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span>₹{{ total }}</span></div>
+        <div class="summary-row"><span>Taxes & Charges</span><span>Included</span></div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row"><span>Total</span><span>₹{{ total }}</span></div>
+        <p class="error-msg" *ngIf="error">{{ error }}</p>
+        <button class="btn-primary" (click)="placeOrder()" [disabled]="placing">
+          {{ placing ? 'Placing Order…' : 'Place Order' }}
+        </button>
+        <button class="btn-secondary" style="margin-top:12px" (click)="goToMenu()">← Add More Items</button>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,42 @@
+.admin-layout{display:flex;min-height:100vh}
+.sidebar{width:220px;flex-shrink:0;background:var(--relish-black);display:flex;flex-direction:column;padding:24px 16px;border-right:2px solid var(--relish-gold)}
+.sidebar-brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:#fff;margin-bottom:32px}
+.logo-r{font-size:28px;color:var(--relish-gold)}
+.sidebar-nav{display:flex;flex-direction:column;gap:4px;flex:1}
+.nav-item{display:block;padding:10px 14px;border-radius:8px;color:#aaa;text-decoration:none;font-size:14px;transition:all .15s}
+.nav-item:hover,.nav-item.active{background:rgba(201,168,76,.12);color:var(--relish-gold)}
+.btn-logout{background:none;border:1px solid #444;border-radius:8px;color:#aaa;padding:10px;font-size:13px;cursor:pointer;transition:all .15s}
+.btn-logout:hover{border-color:#c0392b;color:#c0392b}
+.admin-main{flex:1;padding:32px 28px;background:var(--relish-surface)}
+.admin-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.admin-header h1{font-size:24px}
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap}
+.filter-btn{padding:6px 14px;border-radius:20px;border:1.5px solid var(--relish-border);background:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
+.filter-btn.active,.filter-btn:hover{background:var(--relish-gold);border-color:var(--relish-gold);color:var(--relish-black)}
+.orders-table-wrap{display:flex;flex-direction:column;gap:12px}
+.order-row{display:flex;align-items:center;gap:20px;padding:16px 20px;flex-wrap:wrap}
+.order-meta{min-width:180px}
+.order-meta h4{font-size:15px;font-weight:600;margin-bottom:3px}
+.order-customer{font-size:13px;color:var(--relish-text-muted)}
+.order-date{font-size:12px;color:var(--relish-text-muted);margin-top:2px}
+.order-items-list{display:flex;flex-wrap:wrap;gap:6px;flex:1}
+.order-item-pill{font-size:12px;padding:3px 10px;background:rgba(201,168,76,.1);color:#8a6d1f;border-radius:12px}
+.order-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.status-badge{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600}
+.status-pending{background:#fff8e1;color:#856404}
+.status-confirmed{background:#e8f5e9;color:#2e7d32}
+.status-completed{background:#e3f2fd;color:#1565c0}
+.btn-action{padding:7px 18px;border-radius:8px;border:none;background:var(--relish-gold);color:var(--relish-black);font-size:13px;font-weight:600;cursor:pointer;transition:background .15s}
+.btn-action:hover{background:var(--relish-gold-light)}
+.btn-action:disabled{opacity:.5;cursor:not-allowed}
+.empty-msg{text-align:center;padding:40px;color:var(--relish-text-muted)}
+.loading-state{text-align:center;padding:60px 0}
+.spinner{width:36px;height:36px;border:3px solid var(--relish-border);border-top-color:var(--relish-gold);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){
+  .admin-layout{flex-direction:column}
+  .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;padding:12px 16px;gap:8px}
+  .sidebar-brand{margin-bottom:0}
+  .sidebar-nav{flex-direction:row;flex:none}
+  .order-row{flex-direction:column;align-items:flex-start}
+}

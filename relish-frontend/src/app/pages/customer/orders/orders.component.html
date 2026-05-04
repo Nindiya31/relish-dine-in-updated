@@ -1,0 +1,29 @@
+<app-navbar />
+<div class="orders-page">
+  <h1>My Orders</h1>
+  <div class="loading-state" *ngIf="loading"><div class="spinner"></div><p>Loading orders…</p></div>
+  <div class="empty-orders card" *ngIf="!loading&&orders.length===0">
+    <p class="empty-icon">📋</p><h3>No orders yet</h3>
+    <p>Place your first order from the menu.</p>
+    <button class="btn-primary" style="max-width:200px;margin-top:20px" (click)="goToMenu()">Order Now</button>
+  </div>
+  <div class="orders-list" *ngIf="!loading&&orders.length">
+    <div class="order-card card" *ngFor="let order of orders">
+      <div class="order-header">
+        <div>
+          <h3>Order #{{ order.id }}</h3>
+          <p class="order-date">{{ order.createdAt | date:'dd MMM yyyy, h:mm a' }}</p>
+        </div>
+        <span class="status-badge" [ngClass]="statusClass(order.status)">{{ statusLabel(order.status) }}</span>
+      </div>
+      <div class="order-items">
+        <div class="order-item" *ngFor="let item of order.items">
+          <span>{{ item.menuItemName }} × {{ item.quantity }}</span>
+          <span>₹{{ item.price * item.quantity }}</span>
+        </div>
+      </div>
+      <div class="order-footer"><span class="order-total">Total: ₹{{ order.totalAmount }}</span></div>
+    </div>
+  </div>
+  <p class="auto-refresh" *ngIf="!loading&&orders.length">🔄 Auto-refreshes every 15 seconds</p>
+</div>
